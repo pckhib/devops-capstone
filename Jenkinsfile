@@ -39,6 +39,12 @@ pipeline {
     //   }
     // }
 
+    stage('Create Kubernetes configuration') {
+      steps {
+        sh 'aws eks --region eu-central-1 update-kubeconfig --name devops-capstone'
+      }
+    }
+
     stage('Test Kubernetes configuration') {
       steps {
         withAWS(region: 'eu-central-1', credentials: 'aws') {
