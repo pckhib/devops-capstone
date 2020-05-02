@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: bluegreen
 spec:
-  type: NodePort
   selector:
     app: green
   ports:
-    - port: 80
-      targetPort: 8000
+    - port: 8000
+      targetPort: 80
+  type: LoadBalancer
