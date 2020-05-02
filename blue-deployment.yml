@@ -11,6 +11,6 @@ spec:
     spec:
       containers:
         - name: blue
-          image: pckhib/devops-capstone
+          image: pckhib/devops-capstone:blue
           ports:
             - containerPort: 80

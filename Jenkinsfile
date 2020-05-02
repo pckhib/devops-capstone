@@ -71,7 +71,21 @@ pipeline {
       }
     }
 
-    stage('Create Service') {
+    stage('Use Blue Deployment') {
+      steps {
+        withAWS(region: 'eu-central-1', credentials: 'aws') {
+          sh 'kubectl apply -f blue-service.yml'
+        }
+      }
+    }
+
+    stage('Wait user approve') {
+      steps {
+          input "Redirect traffic to green deployment?"
+      }
+    }
+
+    stage('Use Green Deployment') {
       steps {
         withAWS(region: 'eu-central-1', credentials: 'aws') {
           sh 'kubectl apply -f green-service.yml'

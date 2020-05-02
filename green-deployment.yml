@@ -11,6 +11,6 @@ spec:
     spec:
       containers:
         - name: green
-          image: pckhib/devops-capstone
+          image: pckhib/devops-capstone:latest
           ports:
             - containerPort: 80
