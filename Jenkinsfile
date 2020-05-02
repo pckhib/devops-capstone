@@ -92,5 +92,14 @@ pipeline {
         }
       }
     }
+
+    stage('Deployment Details') {
+      steps {
+        withAWS(region: 'eu-central-1', credentials: 'aws') {
+          sh 'kubectl get pods'
+          sh 'kubectl get services'
+        }
+      }
+    }
   }
 }
