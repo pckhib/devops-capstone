@@ -30,14 +30,14 @@ pipeline {
       }
     }
 
-    stage('Create Kubernetes Cluster') {
-      steps {
-        withAWS(region: 'eu-central-1', credentials: 'aws') {
-          sh 'eksctl create cluster -f cluster.yml'
-          sh 'aws eks --region eu-central-1 update-kubeconfig --name devops-capstone'
-        }
-      }
-    }
+    // stage('Create Kubernetes Cluster') {
+    //   steps {
+    //     withAWS(region: 'eu-central-1', credentials: 'aws') {
+    //       sh 'eksctl create cluster -f cluster.yml'
+    //       sh 'aws eks --region eu-central-1 update-kubeconfig --name devops-capstone'
+    //     }
+    //   }
+    // }
 
     stage('Test Kubernetes configuration') {
       steps {
