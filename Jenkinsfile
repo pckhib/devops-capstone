@@ -54,5 +54,29 @@ pipeline {
         }
       }
     }
+
+    stage('Create Blue Deployment') {
+      steps {
+        withAWS(region: 'eu-central-1', credentials: 'aws') {
+          sh 'kubectl apply -f blue-deployment.yml'
+        }
+      }
+    }
+
+    stage('Create Green Deployment') {
+      steps {
+        withAWS(region: 'eu-central-1', credentials: 'aws') {
+          sh 'kubectl apply -f green-deployment.yml'
+        }
+      }
+    }
+
+    stage('Create Service') {
+      steps {
+        withAWS(region: 'eu-central-1', credentials: 'aws') {
+          sh 'kubectl apply -f green-service.yml'
+        }
+      }
+    }
   }
 }
